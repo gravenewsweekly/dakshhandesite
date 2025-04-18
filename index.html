@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daksh Hande - Air India Express Services</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>dakshhande.site</h1>
+            <p>Air India Express Service Portal</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#attendance">Attendance</a></li>
+                <li><a href="#weekoff">Week Off</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#terms">Terms</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="disclaimer.html">Legal Disclaimer</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="home" class="content-section">
+                <h2>Welcome to my service portal</h2>
+                <p>This portal is dedicated to providing excellent service for Air India Express passengers only. Submit your reviews, please we request to only check attendance, week offs. We do not encourage to make any mistake on these pages. The website is built using HTML, CSS , JavaScript, Jsonbin to store data, Form spree for handlling contact queries, Razorpay for payment, It's completely optional website.</p>
+                <div class="marquee">
+                    <marquee behavior="scroll" direction="left">Important: Always provide accurate PNR and passenger details when submitting reviews. Tipping is Voluntary ₹15</marquee>
+                </div>
+            </section>
+
+            <section id="about" class="content-section" style="display:none;">
+                <h2>About Our Services</h2>
+                <p>We specialize in providing top-notch services for Air India Express passengers including boarding assistance, luggage handling, and check-in services.</p>
+                <p>Our team is committed to ensuring your travel experience is smooth and comfortable.</p>
+                <div class="blink">Service Hours: 24/7</div>
+            </section>
+
+            <section id="reviews" class="content-section" style="display:none;">
+                <h2>Passenger Reviews</h2>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="passengerName">Passenger Name*:</label>
+                        <input type="text" id="passengerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Airline*:</label>
+                        <input type="text" id="airline" value="Air India Express" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age*:</label>
+                        <input type="number" id="age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pnr">PNR*:</label>
+                        <input type="text" id="pnr" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number*:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Done*:</label>
+                        <select id="service" required>
+                            <option value="">Select Service</option>
+                            <option value="boarding">Boarding</option>
+                            <option value="l4">L4</option>
+                            <option value="flooring">Flooring</option>
+                            <option value="arrival">Arrival</option>
+                            <option value="checkin">Check In</option>
+                            <option value="international_l4">International L4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback">Feedback:</label>
+                        <textarea id="feedback" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Submit Review</button>
+                        <button type="button" id="tipButton" class="tip-button">Tip ₹15</button>
+                    </div>
+                </form>
+
+                <div id="reviewsList" class="reviews-container">
+                    <!-- Reviews will be loaded here -->
+                </div>
+            </section>
+
+            <section id="attendance" class="content-section" style="display:none;">
+                <h2>Attendance Tracker</h2>
+                <div class="attendance-controls">
+                    <button id="presentBtn" class="attendance-btn present">Present</button>
+                    <button id="absentBtn" class="attendance-btn absent">Absent</button>
+                </div>
+                <div id="attendanceRecords" class="records-container">
+                    <!-- Attendance records will be loaded here -->
+                </div>
+            </section>
+
+            <section id="weekoff" class="content-section" style="display:none;">
+                <h2>Week Off Management</h2>
+                <form id="weekoffForm">
+                    <div class="form-group">
+                        <label>Week Off Type*:</label>
+                        <select id="weekoffType" required>
+                            <option value="">Select Type</option>
+                            <option value="self">Self</option>
+                            <option value="company">Company</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Post Week Off</button>
+                    </div>
+                </form>
+                <div id="weekoffRecords" class="records-container">
+                    <!-- Week off records will be loaded here -->
+                </div>
+            </section>
+
+            <section id="contact" class="content-section" style="display:none;">
+                <h2>Contact Us</h2>
+                <form id="contactForm" action="https://formspree.io/f/mjkyqvpy" method="POST">
+                    <div class="form-group">
+                        <label for="contactName">Name:</label>
+                        <input type="text" id="contactName" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email:</label>
+                        <input type="email" id="contactEmail" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message:</label>
+                        <textarea id="contactMessage" name="message" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Send Message</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="terms" class="content-section" style="display:none;">
+                <h2>Terms of Service</h2>
+                <p>By using this service portal, you agree to provide accurate information about your Air India Express travel experience.</p>
+                <p>All reviews are subject to verification and may be removed if found to be fraudulent.</p>
+                <p>Tipping is optional and non-refundable.</p>
+            </section>
+
+            <section id="privacy" class="content-section" style="display:none;">
+                <h2>Privacy Policy</h2>
+                <p>We collect only necessary passenger information to improve our services.</p>
+                <p>Your PNR and personal details are stored securely and not shared with third parties.</p>
+                <p>Attendance and week off data is used solely for service management purposes.</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 dakshhande.site - All Rights Reserved</p>
+            <p>Air India Express Service Portal v1.0</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
