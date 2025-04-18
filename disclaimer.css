@@ -1,0 +1,23 @@
+/* Disclaimer Page Specific Styles */
+.disclaimer-content {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.disclaimer-content h3 {
+    color: #0066cc;
+    border-bottom: 1px dotted #ff9900;
+    padding-bottom: 5px;
+    margin-top: 25px;
+}
+
+.disclaimer-content ul {
+    margin-left: 20px;
+}
+
+.disclaimer-content li {
+    margin-bottom: 10px;
+    list-style-type: square;
+}
