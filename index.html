@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daksh Hande - Air India Express Services</title>
+    <title>Daksh Hande - Personal Service Feedback Portal</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
@@ -11,14 +11,14 @@
     <div class="container">
         <header>
             <h1>dakshhande.site</h1>
-            <p>Air India Express Service Portal</p>
+            <p>Personal Service Feedback Portal</p>
         </header>
 
         <nav>
             <ul>
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#reviews">Feedback</a></li>
                 <li><a href="#attendance">Attendance</a></li>
                 <li><a href="#weekoff">Week Off</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -29,62 +29,66 @@
 
         <main>
             <section id="home" class="content-section">
-                <h2>Welcome to my service portal</h2>
-                <p>This portal is dedicated to providing excellent service for Air India Express passengers only. Submit your reviews, please we request to only check attendance, week offs. We do not encourage to make any mistake on these pages. The website is built using HTML, CSS , JavaScript, Jsonbin to store data, Form spree for handlling contact queries, Razorpay for payment, It's completely optional website. This is a personal feedback project website only. Not affiliated with Air India Express or Global Flight Handling Services Pvt Ltd Employer.</p>
+                <h2>Welcome to My Feedback Portal</h2>
+                <p>This is a <strong>personal project</strong> to collect feedback about my customer service interactions. 
+                <span class="blink">Not affiliated with any employer.</span> 
+                Tipping is completely voluntary (₹15) and not expected.</p>
                 <div class="marquee">
-                    <marquee behavior="scroll" direction="left">Important: Always provide accurate PNR and passenger details when submitting reviews. Tipping is Voluntary ₹15</marquee>
+                    <marquee behavior="scroll" direction="left">Important: All information provided is voluntary. No data is shared with third parties.</marquee>
+                </div>
+                <div class="legal-notice">
+                    <h3>Legal Disclaimer</h3>
+                    <p>This website operates independently and is not connected to any airline or ground handling company. All services mentioned were provided in personal capacity.</p>
                 </div>
             </section>
 
             <section id="about" class="content-section" style="display:none;">
-                <h2>About Our Services</h2>
-                <p>We specialize in providing top-notch services for Air India Express passengers including boarding assistance, luggage handling, and check-in services.</p>
-                <p>Our team is committed to ensuring your travel experience is smooth and comfortable.</p>
-                <div class="blink">Service Hours: 24/7</div>
+                <h2>About This Portal</h2>
+                <p>This personal project documents customer service interactions and collects voluntary feedback.</p>
+                <div class="blink">Note: This is not an official service channel</div>
             </section>
 
             <section id="reviews" class="content-section" style="display:none;">
-                <h2>Passenger Reviews</h2>
+                <h2>Service Feedback</h2>
                 <form id="reviewForm">
                     <div class="form-group">
-                        <label for="passengerName">Passenger Name*:</label>
-                        <input type="text" id="passengerName" required>
+                        <label for="passengerName">Name (Optional):</label>
+                        <input type="text" id="passengerName">
+                        <span class="hint">First name only recommended</span>
                     </div>
                     <div class="form-group">
-                        <label>Airline*:</label>
-                        <input type="text" id="airline" value="Air India Express" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="age">Age*:</label>
-                        <input type="number" id="age" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="pnr">PNR*:</label>
-                        <input type="text" id="pnr" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number*:</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Service Done*:</label>
+                        <label>Service Type*:</label>
                         <select id="service" required>
                             <option value="">Select Service</option>
-                            <option value="boarding">Boarding</option>
-                            <option value="l4">L4</option>
-                            <option value="flooring">Flooring</option>
-                            <option value="arrival">Arrival</option>
-                            <option value="checkin">Check In</option>
-                            <option value="international_l4">International L4</option>
+                            <option value="boarding">Boarding Assistance</option>
+                            <option value="l4">Luggage Help (L4)</option>
+                            <option value="checkin">Check-In Support</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="feedback">Feedback:</label>
-                        <textarea id="feedback" rows="4"></textarea>
+                        <label for="feedback">Feedback*:</label>
+                        <textarea id="feedback" rows="4" required></textarea>
+                    </div>
+                    <div class="optional-fields">
+                        <h4>Optional Information</h4>
+                        <div class="form-group">
+                            <label for="pnr">PNR (Optional):</label>
+                            <input type="text" id="pnr">
+                            <span class="hint">For reference only, not stored</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone (Optional):</label>
+                            <input type="tel" id="phone">
+                            <span class="hint">Will never be contacted</span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit">Submit Review</button>
-                        <button type="button" id="tipButton" class="tip-button">Tip ₹15</button>
+                        <button type="submit">Submit Feedback</button>
+                        <button type="button" id="tipButton" class="tip-button">Voluntary Tip ₹15</button>
+                    </div>
+                    <div class="consent-checkbox">
+                        <input type="checkbox" id="consent" required>
+                        <label for="consent">I confirm this is voluntary feedback and understand no service is guaranteed</label>
                     </div>
                 </form>
 
@@ -94,10 +98,13 @@
             </section>
 
             <section id="attendance" class="content-section" style="display:none;">
-                <h2>Attendance Tracker</h2>
+                <h2>Personal Attendance Log</h2>
+                <div class="notice">
+                    <p>This is a personal record-keeping system only.</p>
+                </div>
                 <div class="attendance-controls">
-                    <button id="presentBtn" class="attendance-btn present">Present</button>
-                    <button id="absentBtn" class="attendance-btn absent">Absent</button>
+                    <button id="presentBtn" class="attendance-btn present">Mark Present</button>
+                    <button id="absentBtn" class="attendance-btn absent">Mark Absent</button>
                 </div>
                 <div id="attendanceRecords" class="records-container">
                     <!-- Attendance records will be loaded here -->
@@ -105,18 +112,21 @@
             </section>
 
             <section id="weekoff" class="content-section" style="display:none;">
-                <h2>Week Off Management</h2>
+                <h2>Personal Schedule Tracker</h2>
+                <div class="notice">
+                    <p>For personal reference only - not connected to employer systems.</p>
+                </div>
                 <form id="weekoffForm">
                     <div class="form-group">
-                        <label>Week Off Type*:</label>
+                        <label>Day Type*:</label>
                         <select id="weekoffType" required>
                             <option value="">Select Type</option>
-                            <option value="self">Self</option>
-                            <option value="company">Company</option>
+                            <option value="self">Personal Day</option>
+                            <option value="company">Scheduled Day</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button type="submit">Post Week Off</button>
+                        <button type="submit">Save Record</button>
                     </div>
                 </form>
                 <div id="weekoffRecords" class="records-container">
@@ -125,7 +135,7 @@
             </section>
 
             <section id="contact" class="content-section" style="display:none;">
-                <h2>Contact Us</h2>
+                <h2>Contact</h2>
                 <form id="contactForm" action="https://formspree.io/f/mjkyqvpy" method="POST">
                     <div class="form-group">
                         <label for="contactName">Name:</label>
@@ -146,23 +156,62 @@
             </section>
 
             <section id="terms" class="content-section" style="display:none;">
-                <h2>Terms of Service</h2>
-                <p>By using this service portal, you agree to provide accurate information about your Air India Express travel experience.</p>
-                <p>All reviews are subject to verification and may be removed if found to be fraudulent.</p>
-                <p>Tipping is optional and non-refundable. Its Voluntary</p>
+                <h2>Strict Terms of Service</h2>
+                <div class="legal-text">
+                    <h3>1. General Conditions</h3>
+                    <p>This is a personal project website. By using this site, you agree:</p>
+                    <ul>
+                        <li>All interactions are voluntary</li>
+                        <li>No service guarantees are implied</li>
+                        <li>The operator is not liable for any decisions made based on this data</li>
+                    </ul>
+                    
+                    <h3>2. Financial Terms</h3>
+                    <ul>
+                        <li>Tips are non-refundable voluntary gratitude payments</li>
+                        <li>Minimum tip amount is ₹15</li>
+                        <li>No recurring payments are enabled</li>
+                    </ul>
+                    
+                    <h3>3. Termination Clause</h3>
+                    <p>The site operator may terminate access to any user at any time without notice.</p>
+                </div>
             </section>
 
             <section id="privacy" class="content-section" style="display:none;">
-                <h2>Privacy Policy</h2>
-                <p>We collect only necessary passenger information to improve our services.</p>
-                <p>Your PNR and personal details are stored securely and not shared with third parties.</p>
-                <p>Attendance and week off data is used solely for service management purposes. We request not to distrub it.</p>
+                <h2>Strict Privacy Policy</h2>
+                <div class="legal-text">
+                    <h3>1. Data Collection</h3>
+                    <p>We collect only:</p>
+                    <ul>
+                        <li>Service feedback (text)</li>
+                        <li>Optional first names</li>
+                        <li>No sensitive PNR/phone data is stored permanently</li>
+                    </ul>
+                    
+                    <h3>2. Data Usage</h3>
+                    <ul>
+                        <li>Data is used solely for personal service improvement</li>
+                        <li>Never sold to third parties</li>
+                        <li>Never shared with employers</li>
+                    </ul>
+                    
+                    <h3>3. Data Retention</h3>
+                    <ul>
+                        <li>Anonymous feedback is kept indefinitely</li>
+                        <li>Optional personal data is deleted after 30 days</li>
+                        <li>Financial records (tips) are kept for tax purposes only</li>
+                    </ul>
+                    
+                    <h3>4. User Rights</h3>
+                    <p>You may request deletion of your data by contacting support.</p>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2025 dakshhande.site - All Rights Reserved</p>
-            <p>Air India Express Service Portal v1.0</p>
+            <p>&copy; 2025 dakshhande.site - Personal Project | Not affiliated with any employer</p>
+            <p>v2.0 | Last Updated: April 2025</p>
         </footer>
     </div>
 
