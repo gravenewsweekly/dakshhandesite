@@ -1,0 +1,199 @@
+/* 1998 Early Internet Era Styling */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f0f0f0;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #0066cc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid #ff9900;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 16px;
+}
+
+nav {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: #ff9900;
+    color: #000;
+}
+
+.content-section {
+    padding: 20px;
+    border-bottom: 1px dotted #ccc;
+}
+
+h2 {
+    color: #0066cc;
+    border-bottom: 2px solid #ff9900;
+    padding-bottom: 5px;
+}
+
+.marquee {
+    background-color: #ffff00;
+    padding: 5px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.blink {
+    animation: blink 1s step-end infinite;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+button, .attendance-btn {
+    padding: 8px 15px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+button:hover, .attendance-btn:hover {
+    background-color: #ff9900;
+    color: #000;
+}
+
+.tip-button {
+    background-color: #ff9900;
+    color: #000;
+}
+
+.tip-button:hover {
+    background-color: #ff6600;
+}
+
+.present {
+    background-color: #009900;
+}
+
+.absent {
+    background-color: #cc0000;
+}
+
+.reviews-container, .records-container {
+    margin-top: 20px;
+    border-top: 1px dotted #ccc;
+    padding-top: 20px;
+}
+
+.review-item, .record-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.review-item h3, .record-item h3 {
+    margin-top: 0;
+    color: #0066cc;
+}
+
+.review-date, .record-date {
+    color: #666;
+    font-size: 12px;
+}
+
+.tipped {
+    background-color: #009900 !important;
+    color: white !important;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    font-size: 12px;
+}
+
+/* 3D/4D effects */
+button, .attendance-btn, input, select, textarea {
+    border: 1px solid;
+    border-color: #ccc #999 #999 #ccc;
+}
+
+.content-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for section transitions */
+.content-section {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
