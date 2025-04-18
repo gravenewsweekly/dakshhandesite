@@ -1,4 +1,3 @@
-// your code goes here
 // Configuration
 const JSONBIN_BIN_ID = '68026be88561e97a50027f65';
 const JSONBIN_API_KEY = '$2a$10$g9ECYeyBcUfoe1YWMp3w9eOZleHxwNDe4LX0Pv9yopoigUaOEJ6gq/e5OQya4EEWznFeiEWglTpkqDMSP9sajDui8jHCkWjpLaq';
@@ -69,16 +68,16 @@ function setupForms() {
     reviewForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        // Create review object with optional fields
         const review = {
-            passengerName: document.getElementById('passengerName').value,
-            airline: document.getElementById('airline').value,
-            age: document.getElementById('age').value,
-            pnr: document.getElementById('pnr').value,
-            phone: document.getElementById('phone').value,
+            passengerName: document.getElementById('passengerName').value || 'Anonymous',
             service: document.getElementById('service').value,
             feedback: document.getElementById('feedback').value,
             date: new Date().toISOString(),
-            tipped: false
+            tipped: false,
+            // Optional fields (only include if provided)
+            ...(document.getElementById('pnr').value && { pnr: document.getElementById('pnr').value }),
+            ...(document.getElementById('phone').value && { phone: document.getElementById('phone').value })
         };
         
         try {
@@ -89,13 +88,13 @@ function setupForms() {
             reviewForm.reset();
             
             // Show success message
-            alert('Review submitted successfully!');
+            alert('Thank you for your feedback!');
             
             // Update display
             displayReviews();
         } catch (error) {
-            console.error('Error submitting review:', error);
-            alert('Failed to submit review. Please try again.');
+            console.error('Error submitting feedback:', error);
+            alert('Failed to submit feedback. Please try again.');
         }
     });
     
@@ -105,8 +104,8 @@ function setupForms() {
             key: RAZORPAY_KEY,
             amount: 1500, // ₹15 in paise
             currency: 'INR',
-            name: 'Daksh Hande Services',
-            description: 'Service Tip',
+            name: 'Service Appreciation',
+            description: 'Voluntary Gratitude Tip',
             handler: async function(response) {
                 // Mark the latest review as tipped
                 if (reviewsData.length > 0) {
@@ -115,13 +114,18 @@ function setupForms() {
                     displayReviews();
                     
                     // Update tip button
-                    tipButton.textContent = 'Tipped 😊';
+                    tipButton.textContent = 'Thank You! 😊';
                     tipButton.classList.add('tipped');
                     tipButton.disabled = true;
                 }
             },
             theme: {
                 color: '#0066cc'
+            },
+            modal: {
+                ondismiss: function() {
+                    console.log('Tip window closed');
+                }
             }
         };
         
@@ -155,20 +159,19 @@ function setupForms() {
             weekoffForm.reset();
             
             // Show success message
-            alert('Week off recorded successfully!');
+            alert('Record saved successfully!');
             
             // Update display
             displayWeekoffs();
         } catch (error) {
-            console.error('Error recording week off:', error);
-            alert('Failed to record week off. Please try again.');
+            console.error('Error saving record:', error);
+            alert('Failed to save record. Please try again.');
         }
     });
     
     // Contact form
     contactForm.addEventListener('submit', (e) => {
         // Formspree will handle the submission
-        // We just show a confirmation
         setTimeout(() => {
             alert('Your message has been sent. Thank you!');
             contactForm.reset();
@@ -201,45 +204,29 @@ async function recordAttendance(status, color) {
 // Data loading and saving functions
 async function loadAllData() {
     try {
-        // Load reviews
-        const reviewsResponse = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
+        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
             headers: {
-                'X-Master-Key': JSONBIN_API_KEY
+                'X-Master-Key': JSONBIN_API_KEY,
+                'X-Bin-Meta': false
             }
         });
         
-        const reviewsJson = await reviewsResponse.json();
-        if (reviewsJson.record && reviewsJson.record.reviews) {
-            reviewsData = reviewsJson.record.reviews;
-            displayReviews();
-        }
+        const data = await response.json();
         
-        // Load attendance
-        if (reviewsJson.record && reviewsJson.record.attendance) {
-            attendanceData = reviewsJson.record.attendance;
-            displayAttendance();
-        }
+        if (data.reviews) reviewsData = data.reviews;
+        if (data.attendance) attendanceData = data.attendance;
+        if (data.weekoffs) weekoffData = data.weekoffs;
         
-        // Load weekoffs
-        if (reviewsJson.record && reviewsJson.record.weekoffs) {
-            weekoffData = reviewsJson.record.weekoffs;
-            displayWeekoffs();
-        }
+        displayReviews();
+        displayAttendance();
+        displayWeekoffs();
     } catch (error) {
         console.error('Error loading data:', error);
+        // Initialize empty arrays if loading fails
+        reviewsData = [];
+        attendanceData = [];
+        weekoffData = [];
     }
-}
-
-async function saveReviews() {
-    await saveData({ reviews: reviewsData, attendance: attendanceData, weekoffs: weekoffData });
-}
-
-async function saveAttendance() {
-    await saveData({ reviews: reviewsData, attendance: attendanceData, weekoffs: weekoffData });
-}
-
-async function saveWeekoffs() {
-    await saveData({ reviews: reviewsData, attendance: attendanceData, weekoffs: weekoffData });
 }
 
 async function saveData(data) {
@@ -248,7 +235,8 @@ async function saveData(data) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Master-Key': JSONBIN_API_KEY
+                'X-Master-Key': JSONBIN_API_KEY,
+                'X-Bin-Name': 'Service Feedback Data'
             },
             body: JSON.stringify(data)
         });
@@ -258,29 +246,57 @@ async function saveData(data) {
     }
 }
 
+async function saveReviews() {
+    await saveData({ 
+        reviews: reviewsData, 
+        attendance: attendanceData, 
+        weekoffs: weekoffData 
+    });
+}
+
+async function saveAttendance() {
+    await saveData({ 
+        reviews: reviewsData, 
+        attendance: attendanceData, 
+        weekoffs: weekoffData 
+    });
+}
+
+async function saveWeekoffs() {
+    await saveData({ 
+        reviews: reviewsData, 
+        attendance: attendanceData, 
+        weekoffs: weekoffData 
+    });
+}
+
 // Display functions
 function displayReviews() {
     reviewsList.innerHTML = '';
     
     if (reviewsData.length === 0) {
-        reviewsList.innerHTML = '<p>No reviews yet. Be the first to submit one!</p>';
+        reviewsList.innerHTML = '<p>No feedback yet. Share your experience!</p>';
         return;
     }
     
-    reviewsData.forEach(review => {
+    // Show latest reviews first
+    const sortedReviews = [...reviewsData].reverse();
+    
+    sortedReviews.forEach(review => {
         const reviewElement = document.createElement('div');
         reviewElement.className = 'review-item';
         
-        const tippedText = review.tipped ? '<span style="color:green;"> (Tipped 😊)</span>' : '';
+        const tippedText = review.tipped ? '<span class="tipped-badge">Thanked</span>' : '';
         
         reviewElement.innerHTML = `
-            <h3>${review.passengerName}, ${review.age} years</h3>
-            <div class="review-date">${formatDate(review.date)}</div>
-            <p><strong>PNR:</strong> ${review.pnr}</p>
-            <p><strong>Phone:</strong> ${review.phone}</p>
-            <p><strong>Service:</strong> ${review.service}</p>
-            <p><strong>Feedback:</strong> ${review.feedback || 'No feedback provided'}</p>
-            ${tippedText}
+            <h3>${review.passengerName}</h3>
+            <div class="review-meta">
+                <span class="service">${review.service}</span>
+                <span class="date">${formatDate(review.date)}</span>
+                ${tippedText}
+            </div>
+            <p class="feedback">${review.feedback || 'No additional comments'}</p>
+            ${review.pnr ? `<p class="optional"><strong>Reference:</strong> ${review.pnr}</p>` : ''}
         `;
         
         reviewsList.appendChild(reviewElement);
@@ -291,19 +307,23 @@ function displayAttendance() {
     attendanceRecords.innerHTML = '';
     
     if (attendanceData.length === 0) {
-        attendanceRecords.innerHTML = '<p>No attendance records yet.</p>';
+        attendanceRecords.innerHTML = '<p>No records yet.</p>';
         return;
     }
     
-    attendanceData.forEach(record => {
+    // Show latest records first
+    const sortedAttendance = [...attendanceData].reverse();
+    
+    sortedAttendance.forEach(record => {
         const recordElement = document.createElement('div');
-        recordElement.className = 'record-item';
+        recordElement.className = `record-item ${record.status}`;
         
         const statusSymbol = record.status === 'present' ? '✓' : '✗';
         
         recordElement.innerHTML = `
-            <h3 style="color:${record.color}">${statusSymbol} ${record.status.toUpperCase()}</h3>
-            <div class="record-date">${formatDate(record.date)}</div>
+            <span class="status-icon" style="color:${record.color}">${statusSymbol}</span>
+            <span class="status-text">${record.status.toUpperCase()}</span>
+            <span class="date">${formatDate(record.date)}</span>
         `;
         
         attendanceRecords.appendChild(recordElement);
@@ -314,17 +334,20 @@ function displayWeekoffs() {
     weekoffRecords.innerHTML = '';
     
     if (weekoffData.length === 0) {
-        weekoffRecords.innerHTML = '<p>No week off records yet.</p>';
+        weekoffRecords.innerHTML = '<p>No records yet.</p>';
         return;
     }
     
-    weekoffData.forEach(record => {
+    // Show latest records first
+    const sortedWeekoffs = [...weekoffData].reverse();
+    
+    sortedWeekoffs.forEach(record => {
         const recordElement = document.createElement('div');
-        recordElement.className = 'record-item';
+        recordElement.className = `record-item ${record.type}`;
         
         recordElement.innerHTML = `
-            <h3>${record.type.toUpperCase()} WEEK OFF</h3>
-            <div class="record-date">${formatDate(record.date)}</div>
+            <span class="type">${record.type.toUpperCase()}</span>
+            <span class="date">${formatDate(record.date)}</span>
         `;
         
         weekoffRecords.appendChild(recordElement);
@@ -339,6 +362,7 @@ function formatDate(isoString) {
         month: 'short',
         year: 'numeric',
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
+        hour12: true
     });
-    }
+}
