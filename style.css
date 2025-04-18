@@ -1,44 +1,55 @@
-/* 1998 Early Internet Era Styling */
+/* 1999 Authentic Web Design with Mobile Responsiveness */
 body {
-    font-family: 'Times New Roman', Times, serif;
-    background-color: #f0f0f0;
+    font-family: Arial, "MS Sans Serif", sans-serif;
+    background-color: #008080; /* Classic teal background */
+    background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='); /* Placeholder for repeating bg image */
     color: #000;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
+/* Classic 90s table-based layout simulation */
 .container {
-    width: 800px;
-    margin: 0 auto;
+    width: 90%;
+    max-width: 800px;
+    margin: 10px auto;
     background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 3px outset #ccc;
+    padding: 2px;
 }
 
 header {
-    background-color: #0066cc;
+    background-color: #000080; /* Dark blue */
     color: white;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
-    border-bottom: 5px solid #ff9900;
+    border-bottom: 4px ridge #ffcc00;
+    background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='); /* Placeholder for bg pattern */
 }
 
 header h1 {
     margin: 0;
-    font-size: 28px;
-    text-shadow: 2px 2px 4px #000;
+    font-size: 24px;
+    text-shadow: none; /* 90s didn't have text-shadow */
+    font-weight: bold;
+    color: #ffff00; /* Yellow text */
 }
 
 header p {
     margin: 5px 0 0;
-    font-size: 16px;
+    font-size: 14px;
+    color: white;
 }
 
+/* Classic beveled navigation */
 nav {
-    background-color: #333;
-    padding: 10px 0;
+    background-color: #c0c0c0; /* Silver */
+    padding: 4px;
+    border-top: 2px solid #dfdfdf;
+    border-left: 2px solid #dfdfdf;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
 }
 
 nav ul {
@@ -46,37 +57,59 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 2px;
 }
 
 nav ul li a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 3px 8px;
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    display: block;
 }
 
 nav ul li a:hover, nav ul li a.active {
-    background-color: #ff9900;
-    color: #000;
+    background-color: #000080;
+    color: white;
+    border: 2px inset #000080;
 }
 
 .content-section {
-    padding: 20px;
-    border-bottom: 1px dotted #ccc;
+    padding: 15px;
+    border-bottom: 1px dashed #ccc;
+    background-color: #ffffff;
+    margin: 5px;
 }
 
 h2 {
-    color: #0066cc;
-    border-bottom: 2px solid #ff9900;
-    padding-bottom: 5px;
+    color: #800000; /* Maroon */
+    border-bottom: 1px solid #ffcc00;
+    padding-bottom: 3px;
+    font-size: 18px;
+}
+
+/* Classic marquee (would need JS for actual marquee) */
+.marquee-container {
+    background-color: #000080;
+    padding: 3px;
+    margin: 10px 0;
 }
 
 .marquee {
-    background-color: #ffff00;
-    padding: 5px;
-    margin: 10px 0;
+    color: #ffff00;
     font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .blink {
@@ -89,111 +122,218 @@ h2 {
     50% { opacity: 0; }
 }
 
+/* Classic 90s form elements */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     font-weight: bold;
+    color: #000080;
 }
 
 .form-group input, 
 .form-group select, 
 .form-group textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    background-color: #fff;
+    padding: 5px;
+    border: 2px inset #c0c0c0;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    font-family: "Courier New", monospace;
 }
 
 button, .attendance-btn {
-    padding: 8px 15px;
-    background-color: #0066cc;
-    color: white;
-    border: none;
+    padding: 6px 12px;
+    background-color: #c0c0c0;
+    color: black;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
     cursor: pointer;
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 8px;
+    font-size: 12px;
 }
 
 button:hover, .attendance-btn:hover {
-    background-color: #ff9900;
-    color: #000;
+    background-color: #000080;
+    color: white;
+}
+
+button:active, .attendance-btn:active {
+    border: 2px inset #000080;
 }
 
 .tip-button {
-    background-color: #ff9900;
+    background-color: #ffcc00;
     color: #000;
 }
 
 .tip-button:hover {
-    background-color: #ff6600;
+    background-color: #ff9900;
 }
 
 .present {
-    background-color: #009900;
+    background-color: #008000; /* Green */
+    color: white;
 }
 
 .absent {
-    background-color: #cc0000;
+    background-color: #800000; /* Maroon */
+    color: white;
 }
 
 .reviews-container, .records-container {
-    margin-top: 20px;
-    border-top: 1px dotted #ccc;
-    padding-top: 20px;
+    margin-top: 15px;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
 }
 
 .review-item, .record-item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #c0c0c0;
+    padding: 10px;
+    margin-bottom: 8px;
 }
 
 .review-item h3, .record-item h3 {
     margin-top: 0;
-    color: #0066cc;
+    color: #000080;
+    font-size: 16px;
 }
 
 .review-date, .record-date {
-    color: #666;
-    font-size: 12px;
+    color: #808080;
+    font-size: 11px;
+    font-family: "Courier New", monospace;
 }
 
 .tipped {
-    background-color: #009900 !important;
+    background-color: #008000 !important;
     color: white !important;
 }
 
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    font-size: 12px;
+    padding: 10px;
+    background-color: #c0c0c0;
+    color: black;
+    font-size: 11px;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #dfdfdf;
+    border-bottom: 2px solid #dfdfdf;
+    margin: 5px;
 }
 
-/* 3D/4D effects */
-button, .attendance-btn, input, select, textarea {
-    border: 1px solid;
-    border-color: #ccc #999 #999 #ccc;
+/* Visitor counter simulation */
+.visitor-counter {
+    font-family: "LCD", "Courier New", monospace;
+    color: #ff0000;
+    background-color: #000;
+    padding: 2px 5px;
+    display: inline-block;
 }
 
-.content-section {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+/* Classic horizontal rule */
+hr {
+    height: 3px;
+    border: none;
+    background-color: #c0c0c0;
+    color: #c0c0c0;
+    margin: 15px 0;
 }
 
-/* Animation for section transitions */
-.content-section {
-    animation: fadeIn 0.5s ease-in-out;
+/* Under construction animated gif simulation */
+.construction {
+    text-align: center;
+    padding: 10px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.construction img {
+    border: 0;
+}
+
+/* 90s-style link colors */
+a {
+    color: #0000ff;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #800080;
+}
+
+a:hover {
+    color: #ff0000;
+    text-decoration: none;
+}
+
+/* Responsive design for mobile */
+@media screen and (max-width: 600px) {
+    .container {
+        width: 98%;
+        margin: 5px auto;
+        border-width: 2px;
+    }
+    
+    header h1 {
+        font-size: 20px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav ul li {
+        margin: 1px 0;
+    }
+    
+    .content-section {
+        padding: 10px;
+        margin: 3px;
+    }
+    
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+        padding: 6px;
+    }
+    
+    button, .attendance-btn {
+        padding: 5px 10px;
+        margin-right: 5px;
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .marquee {
+        white-space: normal;
+    }
+}
+
+/* Netscape 4.x hack (would be in HTML comments in real 90s site) */
+/*/*/
+body {
+    font-size: small;
+}
+/**/
+
+/* IE5 hack */
+* html body {
+    scrollbar-face-color: #c0c0c0;
+    scrollbar-shadow-color: #808080;
+    scrollbar-highlight-color: #ffffff;
+    scrollbar-3dlight-color: #dfdfdf;
+    scrollbar-darkshadow-color: #000000;
+    scrollbar-track-color: #f0f0f0;
+    scrollbar-arrow-color: #000000;
 }
