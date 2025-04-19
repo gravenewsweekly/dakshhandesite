@@ -1,220 +1,428 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Service Feedback Portal for Daksh Hande - Collecting voluntary feedback about customer service interactions">
+    <meta name="keywords" content="feedback, customer service, tipping, attendance tracking">
+    <meta name="author" content="Daksh Hande">
     <title>Daksh Hande - Personal Service Feedback Portal</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
+        <!-- Loading overlay -->
+        <div id="loadingSection" class="loading-overlay">
+            <div class="loading-spinner"></div>
+            <p>Loading your data...</p>
+        </div>
+
+        <!-- Error display -->
+        <div id="errorDisplay" class="error-alert"></div>
+
         <header>
-            <h1>dakshhande.site</h1>
-            <p>Personal Service Feedback Portal</p>
+            <div class="header-content">
+                <h1>dakshhande.site</h1>
+                <p>Personal Service Feedback Portal</p>
+                <button id="themeToggle" class="theme-toggle">🌙 Dark Mode</button>
+            </div>
+            <div class="header-meta">
+                <span id="lastSaved">Loading...</span>
+            </div>
         </header>
 
         <nav>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul>
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#reviews">Feedback</a></li>
-                <li><a href="#attendance">Attendance</a></li>
-                <li><a href="#weekoff">Week Off</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#terms">Terms</a></li>
-                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#reviews"><i class="fas fa-comment-alt"></i> Feedback</a></li>
+                <li><a href="#attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                <li><a href="#weekoff"><i class="fas fa-calendar-times"></i> Week Off</a></li>
+                <li><a href="#stats"><i class="fas fa-chart-bar"></i> Stats</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="#terms"><i class="fas fa-file-contract"></i> Terms</a></li>
+                <li><a href="#privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
             </ul>
         </nav>
 
         <main>
             <section id="home" class="content-section">
                 <h2>Welcome to My Feedback Portal</h2>
-                <p>This is a <strong>personal project</strong> to collect feedback about my customer service interactions. 
-                <span class="blink">Not affiliated with any employer.</span> 
-                Tipping is completely voluntary (₹15) and not expected.</p>
-                <div class="marquee">
-                    <marquee behavior="scroll" direction="left">Important: All information provided is voluntary. No data is shared with third parties.</marquee>
+                <div class="card">
+                    <p>This is a <strong>personal project</strong> to collect feedback about my customer service interactions. 
+                    <span class="highlight">Not affiliated with any employer.</span> 
+                    Tipping is completely voluntary (₹15) and not expected.</p>
                 </div>
-                <div class="legal-notice">
-                    <h3>Legal Disclaimer</h3>
+                
+                <div class="notice-card">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Important: All information provided is voluntary. No data is shared with third parties.</p>
+                </div>
+                
+                <div class="legal-notice card">
+                    <h3><i class="fas fa-balance-scale"></i> Legal Disclaimer</h3>
                     <p>This website operates independently and is not connected to any airline or ground handling company. All services mentioned were provided in personal capacity.</p>
+                </div>
+                
+                <div class="quick-stats card" id="statsPreview">
+                    <h3><i class="fas fa-chart-pie"></i> Quick Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" id="previewReviews">0</span>
+                            <span class="stat-label">Feedback</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="previewPresent">0</span>
+                            <span class="stat-label">Present</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="previewWeekoffs">0</span>
+                            <span class="stat-label">Weekoffs</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <section id="about" class="content-section" style="display:none;">
-                <h2>About This Portal</h2>
-                <p>This personal project documents customer service interactions and collects voluntary feedback.</p>
-                <div class="blink">Note: This is not an official service channel</div>
+                <h2><i class="fas fa-info-circle"></i> About This Portal</h2>
+                <div class="card">
+                    <p>This personal project documents customer service interactions and collects voluntary feedback.</p>
+                    <div class="highlight-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Note: This is not an official service channel</p>
+                    </div>
+                    
+                    <h3><i class="fas fa-user"></i> About Me</h3>
+                    <p>Customer service professional with experience in airport operations and passenger assistance.</p>
+                    
+                    <h3><i class="fas fa-project-diagram"></i> Project Goals</h3>
+                    <ul>
+                        <li>Track service quality over time</li>
+                        <li>Collect voluntary feedback</li>
+                        <li>Maintain personal attendance records</li>
+                        <li>Improve customer service skills</li>
+                    </ul>
+                </div>
             </section>
 
             <section id="reviews" class="content-section" style="display:none;">
-                <h2>Service Feedback</h2>
-                <form id="reviewForm">
-                    <div class="form-group">
-                        <label for="passengerName">Name (Optional):</label>
-                        <input type="text" id="passengerName">
-                        <span class="hint">First name only recommended</span>
-                    </div>
-                    <div class="form-group">
-                        <label>Service Type*:</label>
-                        <select id="service" required>
-                            <option value="">Select Service</option>
-                            <option value="boarding">Boarding Assistance</option>
-                            <option value="l4">Luggage Help (L4)</option>
-                            <option value="checkin">Check-In Support</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="feedback">Feedback*:</label>
-                        <textarea id="feedback" rows="4" required></textarea>
-                    </div>
-                    <div class="optional-fields">
-                        <h4>Optional Information</h4>
+                <h2><i class="fas fa-comment-alt"></i> Service Feedback</h2>
+                <div class="card">
+                    <form id="reviewForm">
                         <div class="form-group">
-                            <label for="pnr">PNR (Optional):</label>
-                            <input type="text" id="pnr">
-                            <span class="hint">For reference only, not stored</span>
+                            <label for="passengerName"><i class="fas fa-user"></i> Name (Optional):</label>
+                            <input type="text" id="passengerName" placeholder="First name only">
+                            <span class="hint"><i class="fas fa-info-circle"></i> First name only recommended</span>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="phone">Phone (Optional):</label>
-                            <input type="tel" id="phone">
-                            <span class="hint">Will never be contacted</span>
+                            <label><i class="fas fa-concierge-bell"></i> Service Type*:</label>
+                            <select id="service" required>
+                                <option value="">Select Service</option>
+                                <option value="boarding">Boarding Assistance</option>
+                                <option value="l4">Luggage Help (L4)</option>
+                                <option value="checkin">Check-In Support</option>
+                                <option value="special">Special Assistance</option>
+                                <option value="information">Information Desk</option>
+                                <option value="other">Other Service</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit">Submit Feedback</button>
-                        <button type="button" id="tipButton" class="tip-button">Voluntary Tip ₹15</button>
-                    </div>
-                    <div class="consent-checkbox">
-                        <input type="checkbox" id="consent" required>
-                        <label for="consent">I confirm this is voluntary feedback and understand no service is guaranteed</label>
-                    </div>
-                </form>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-star"></i> Rating (Optional):</label>
+                            <div class="rating-container">
+                                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedback"><i class="fas fa-comment-dots"></i> Feedback*:</label>
+                            <textarea id="feedback" rows="4" required placeholder="Please share your experience..."></textarea>
+                        </div>
+                        
+                        <div class="optional-fields">
+                            <h4><i class="fas fa-ellipsis-h"></i> Optional Information</h4>
+                            <div class="form-group">
+                                <label for="pnr"><i class="fas fa-ticket-alt"></i> PNR (Optional):</label>
+                                <input type="text" id="pnr" placeholder="Booking reference">
+                                <span class="hint"><i class="fas fa-info-circle"></i> For reference only, not stored</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone"><i class="fas fa-phone"></i> Phone (Optional):</label>
+                                <input type="tel" id="phone" placeholder="Phone number">
+                                <span class="hint"><i class="fas fa-info-circle"></i> Will never be contacted</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="primary-btn">
+                                <i class="fas fa-paper-plane"></i> Submit Feedback
+                            </button>
+                            <button type="button" id="tipButton" class="tip-button">
+                                <i class="fas fa-hand-holding-heart"></i> Voluntary Tip ₹15
+                            </button>
+                        </div>
+                        
+                        <div class="consent-checkbox">
+                            <input type="checkbox" id="consent" required>
+                            <label for="consent">
+                                <i class="fas fa-check-circle"></i> I confirm this is voluntary feedback and understand no service is guaranteed
+                            </label>
+                        </div>
+                    </form>
+                </div>
 
-                <div id="reviewsList" class="reviews-container">
-                    <!-- Reviews will be loaded here -->
+                <div id="reviewsList" class="reviews-container card">
+                    <h3><i class="fas fa-history"></i> Recent Feedback</h3>
+                    <div class="empty-state">
+                        <i class="fas fa-comment-slash"></i>
+                        <p>No feedback yet. Be the first to review!</p>
+                    </div>
                 </div>
             </section>
 
             <section id="attendance" class="content-section" style="display:none;">
-                <h2>Personal Attendance Log</h2>
-                <div class="notice">
+                <h2><i class="fas fa-calendar-check"></i> Personal Attendance Log</h2>
+                <div class="card notice-card">
+                    <i class="fas fa-exclamation-circle"></i>
                     <p>This is a personal record-keeping system only.</p>
                 </div>
-                <div class="attendance-controls">
-                    <button id="presentBtn" class="attendance-btn present">Mark Present</button>
-                    <button id="absentBtn" class="attendance-btn absent">Mark Absent</button>
+                
+                <div class="attendance-controls card">
+                    <button id="presentBtn" class="attendance-btn present">
+                        <i class="fas fa-check-circle"></i> Mark Present
+                    </button>
+                    <button id="absentBtn" class="attendance-btn absent">
+                        <i class="fas fa-times-circle"></i> Mark Absent
+                    </button>
                 </div>
-                <div id="attendanceRecords" class="records-container">
-                    <!-- Attendance records will be loaded here -->
+                
+                <div id="attendanceRecords" class="records-container card">
+                    <h3><i class="fas fa-history"></i> Attendance History</h3>
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <p>No attendance records yet</p>
+                    </div>
                 </div>
             </section>
 
             <section id="weekoff" class="content-section" style="display:none;">
-                <h2>Personal Schedule Tracker</h2>
-                <div class="notice">
+                <h2><i class="fas fa-calendar-times"></i> Personal Schedule Tracker</h2>
+                <div class="card notice-card">
+                    <i class="fas fa-exclamation-circle"></i>
                     <p>For personal reference only - not connected to employer systems.</p>
                 </div>
-                <form id="weekoffForm">
-                    <div class="form-group">
-                        <label>Day Type*:</label>
-                        <select id="weekoffType" required>
-                            <option value="">Select Type</option>
-                            <option value="self">Personal Day</option>
-                            <option value="company">Scheduled Day</option>
-                        </select>
+                
+                <div class="card">
+                    <form id="weekoffForm">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-day"></i> Day Type*:</label>
+                            <select id="weekoffType" required>
+                                <option value="">Select Type</option>
+                                <option value="self">Personal Day</option>
+                                <option value="company">Scheduled Day</option>
+                                <option value="holiday">Public Holiday</option>
+                                <option value="sick">Sick Leave</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="weekoffNotes"><i class="fas fa-sticky-note"></i> Notes (Optional):</label>
+                            <textarea id="weekoffNotes" rows="2" placeholder="Any additional details..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="primary-btn">
+                                <i class="fas fa-save"></i> Save Record
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="weekoffRecords" class="records-container card">
+                    <h3><i class="fas fa-history"></i> Weekoff History</h3>
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-minus"></i>
+                        <p>No weekoff records yet</p>
                     </div>
-                    <div class="form-group">
-                        <button type="submit">Save Record</button>
+                </div>
+            </section>
+
+            <section id="stats" class="content-section" style="display:none;">
+                <h2><i class="fas fa-chart-bar"></i> Service Statistics</h2>
+                <div class="card">
+                    <div id="statsDisplay">
+                        <div class="stats-grid">
+                            <!-- Stats will be loaded here -->
+                        </div>
+                        
+                        <div class="charts-container">
+                            <div class="chart-card">
+                                <h3><i class="fas fa-star"></i> Feedback Ratings</h3>
+                                <div class="chart-placeholder" id="ratingsChart">
+                                    <!-- Chart will be rendered here -->
+                                </div>
+                            </div>
+                            
+                            <div class="chart-card">
+                                <h3><i class="fas fa-calendar-alt"></i> Attendance Trend</h3>
+                                <div class="chart-placeholder" id="attendanceChart">
+                                    <!-- Chart will be rendered here -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
-                <div id="weekoffRecords" class="records-container">
-                    <!-- Week off records will be loaded here -->
                 </div>
             </section>
 
             <section id="contact" class="content-section" style="display:none;">
-                <h2>Contact</h2>
-                <form id="contactForm" action="https://formspree.io/f/mjkyqvpy" method="POST">
-                    <div class="form-group">
-                        <label for="contactName">Name:</label>
-                        <input type="text" id="contactName" name="name">
+                <h2><i class="fas fa-envelope"></i> Contact</h2>
+                <div class="card">
+                    <form id="contactForm" action="https://formspree.io/f/mjkyqvpy" method="POST">
+                        <div class="form-group">
+                            <label for="contactName"><i class="fas fa-user"></i> Name:</label>
+                            <input type="text" id="contactName" name="name" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail"><i class="fas fa-envelope"></i> Email:</label>
+                            <input type="email" id="contactEmail" name="email" placeholder="Your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage"><i class="fas fa-comment"></i> Message:</label>
+                            <textarea id="contactMessage" name="message" rows="4" placeholder="Your message..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="primary-btn">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+                    <div class="faq-item">
+                        <h4>How can I delete my feedback?</h4>
+                        <p>Contact through this form with details of your submission and we'll remove it within 48 hours.</p>
                     </div>
-                    <div class="form-group">
-                        <label for="contactEmail">Email:</label>
-                        <input type="email" id="contactEmail" name="email">
+                    <div class="faq-item">
+                        <h4>Can I get a receipt for my tip?</h4>
+                        <p>Yes, Razorpay provides payment receipts automatically. Contact us if you need additional documentation.</p>
                     </div>
-                    <div class="form-group">
-                        <label for="contactMessage">Message:</label>
-                        <textarea id="contactMessage" name="message" rows="4"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit">Send Message</button>
-                    </div>
-                </form>
+                </div>
             </section>
 
             <section id="terms" class="content-section" style="display:none;">
-                <h2>Strict Terms of Service</h2>
-                <div class="legal-text">
-                    <h3>1. General Conditions</h3>
+                <h2><i class="fas fa-file-contract"></i> Terms of Service</h2>
+                <div class="card legal-text">
+                    <h3><i class="fas fa-gavel"></i> 1. General Conditions</h3>
                     <p>This is a personal project website. By using this site, you agree:</p>
                     <ul>
-                        <li>All interactions are voluntary</li>
-                        <li>No service guarantees are implied</li>
-                        <li>The operator is not liable for any decisions made based on this data</li>
+                        <li><i class="fas fa-check"></i> All interactions are voluntary</li>
+                        <li><i class="fas fa-check"></i> No service guarantees are implied</li>
+                        <li><i class="fas fa-check"></i> The operator is not liable for any decisions made based on this data</li>
                     </ul>
                     
-                    <h3>2. Financial Terms</h3>
+                    <h3><i class="fas fa-money-bill-wave"></i> 2. Financial Terms</h3>
                     <ul>
-                        <li>Tips are non-refundable voluntary gratitude payments</li>
-                        <li>Minimum tip amount is ₹15</li>
-                        <li>No recurring payments are enabled</li>
+                        <li><i class="fas fa-check"></i> Tips are non-refundable voluntary gratitude payments</li>
+                        <li><i class="fas fa-check"></i> Minimum tip amount is ₹15</li>
+                        <li><i class="fas fa-check"></i> No recurring payments are enabled</li>
+                        <li><i class="fas fa-check"></i> All transactions are processed through secure Razorpay gateway</li>
                     </ul>
                     
-                    <h3>3. Termination Clause</h3>
+                    <h3><i class="fas fa-ban"></i> 3. Termination Clause</h3>
                     <p>The site operator may terminate access to any user at any time without notice.</p>
+                    
+                    <div class="highlight-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Last updated: April 2025. These terms may change without notice.</p>
+                    </div>
                 </div>
             </section>
 
             <section id="privacy" class="content-section" style="display:none;">
-                <h2>Strict Privacy Policy</h2>
-                <div class="legal-text">
-                    <h3>1. Data Collection</h3>
+                <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+                <div class="card legal-text">
+                    <h3><i class="fas fa-database"></i> 1. Data Collection</h3>
                     <p>We collect only:</p>
                     <ul>
-                        <li>Service feedback (text)</li>
-                        <li>Optional first names</li>
-                        <li>No sensitive PNR/phone data is stored permanently</li>
+                        <li><i class="fas fa-check"></i> Service feedback (text)</li>
+                        <li><i class="fas fa-check"></i> Optional first names</li>
+                        <li><i class="fas fa-check"></i> Service type and date information</li>
+                        <li><i class="fas fa-times"></i> No sensitive PNR/phone data is stored permanently</li>
                     </ul>
                     
-                    <h3>2. Data Usage</h3>
+                    <h3><i class="fas fa-chart-line"></i> 2. Data Usage</h3>
                     <ul>
-                        <li>Data is used solely for personal service improvement</li>
-                        <li>Never sold to third parties</li>
-                        <li>Never shared with employers</li>
+                        <li><i class="fas fa-check"></i> Data is used solely for personal service improvement</li>
+                        <li><i class="fas fa-times"></i> Never sold to third parties</li>
+                        <li><i class="fas fa-times"></i> Never shared with employers</li>
+                        <li><i class="fas fa-check"></i> Aggregated statistics may be displayed publicly</li>
                     </ul>
                     
-                    <h3>3. Data Retention</h3>
+                    <h3><i class="fas fa-archive"></i> 3. Data Retention</h3>
                     <ul>
-                        <li>Anonymous feedback is kept indefinitely</li>
-                        <li>Optional personal data is deleted after 30 days</li>
-                        <li>Financial records (tips) are kept for tax purposes only</li>
+                        <li><i class="fas fa-check"></i> Anonymous feedback is kept indefinitely</li>
+                        <li><i class="fas fa-check"></i> Optional personal data is deleted after 30 days</li>
+                        <li><i class="fas fa-check"></i> Financial records (tips) are kept for tax purposes only</li>
                     </ul>
                     
-                    <h3>4. User Rights</h3>
-                    <p>You may request deletion of your data by contacting support.</p>
+                    <h3><i class="fas fa-user-cog"></i> 4. User Rights</h3>
+                    <p>You may request deletion of your data by contacting support through the contact form.</p>
+                    
+                    <div class="highlight-card">
+                        <i class="fas fa-lock"></i>
+                        <p>All data is encrypted in transit and at rest. We follow industry-standard security practices.</p>
+                    </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2025 dakshhande.site - Personal Project | Not affiliated with any employer</p>
-            <p>v2.0 | Last Updated: April 2025</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-info-circle"></i> About</h4>
+                    <p>Personal project for service quality tracking and improvement.</p>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-link"></i> Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-shield-alt"></i> Security</h4>
+                    <p>Secure HTTPS connection. Data encrypted at rest.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 dakshhande.site - Personal Project | Not affiliated with any employer</p>
+                <p>v3.0 | Last Updated: April 2025</p>
+            </div>
         </footer>
     </div>
 
+    <!-- Toast notification container -->
+    <div id="toastContainer"></div>
+
+    <!-- Chart.js for statistics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Razorpay is loaded dynamically in script.js -->
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
