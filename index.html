@@ -3,65 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal Service Feedback Portal for Daksh Hande - Collecting voluntary feedback about customer service interactions">
-    <meta name="keywords" content="feedback, customer service, tipping, attendance tracking">
+    <meta name="description" content="Daksh Hande's Personal Service Feedback Portal - Share voluntary feedback about customer service interactions">
+    <meta name="keywords" content="customer service, feedback, service quality, airport assistance">
     <meta name="author" content="Daksh Hande">
-    <title>Daksh Hande - Personal Service Feedback Portal</title>
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Daksh Hande - Service Feedback Portal">
+    <meta property="og:description" content="Share voluntary feedback about customer service interactions with Daksh Hande">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dakshhande.site">
+    
+    <title>Daksh Hande - Service Feedback Portal</title>
+    
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <div class="container">
         <!-- Loading overlay -->
-        <div id="loadingSection" class="loading-overlay">
+        <div id="loadingSection" class="loading-overlay" aria-hidden="true">
             <div class="loading-spinner"></div>
             <p>Loading your data...</p>
         </div>
 
         <!-- Error display -->
-        <div id="errorDisplay" class="error-alert"></div>
+        <div id="errorDisplay" class="error-alert" role="alert"></div>
 
         <header>
             <div class="header-content">
-                <h1>dakshhande.site</h1>
+                <h1><a href="/" aria-label="Daksh Hande Feedback Portal Home">dakshhande.site</a></h1>
                 <p>Personal Service Feedback Portal</p>
-                <button id="themeToggle" class="theme-toggle">🌙 Dark Mode</button>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span> Dark Mode
+                </button>
             </div>
             <div class="header-meta">
-                <span id="lastSaved">Loading...</span>
+                <span id="lastSaved" aria-live="polite">Loading...</span>
             </div>
         </header>
 
-        <nav>
-            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">
+        <nav aria-label="Main navigation">
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
-            <ul>
-                <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="#reviews"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-                <li><a href="#attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
-                <li><a href="#weekoff"><i class="fas fa-calendar-times"></i> Week Off</a></li>
-                <li><a href="#stats"><i class="fas fa-chart-bar"></i> Stats</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li><a href="#terms"><i class="fas fa-file-contract"></i> Terms</a></li>
-                <li><a href="#privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
+            <ul role="menubar">
+                <li role="none"><a role="menuitem" href="#home" class="active" aria-current="page"><i class="fas fa-home"></i> Home</a></li>
+                <li role="none"><a role="menuitem" href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li role="none"><a role="menuitem" href="#reviews"><i class="fas fa-comment-alt"></i> Feedback</a></li>
+                <li role="none"><a role="menuitem" href="#attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                <li role="none"><a role="menuitem" href="#weekoff"><i class="fas fa-calendar-times"></i> Week Off</a></li>
+                <li role="none"><a role="menuitem" href="#stats"><i class="fas fa-chart-bar"></i> Stats</a></li>
+                <li role="none"><a role="menuitem" href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li role="none"><a role="menuitem" href="#terms"><i class="fas fa-file-contract"></i> Terms</a></li>
+                <li role="none"><a role="menuitem" href="#privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
             </ul>
         </nav>
 
-        <main>
-            <section id="home" class="content-section">
-                <h2>Welcome to My Feedback Portal</h2>
+        <main id="main-content">
+            <section id="home" class="content-section" aria-labelledby="home-heading">
+                <h2 id="home-heading">Welcome to My Feedback Portal</h2>
                 <div class="card">
                     <p>This is a <strong>personal project</strong> to collect feedback about my customer service interactions. 
                     <span class="highlight">Not affiliated with any employer.</span> 
                     Tipping is completely voluntary (₹15) and not expected.</p>
                 </div>
                 
-                <div class="notice-card">
+                <div class="notice-card" role="alert">
                     <i class="fas fa-exclamation-circle"></i>
                     <p>Important: All information provided is voluntary. No data is shared with third parties.</p>
                 </div>
@@ -75,26 +87,26 @@
                     <h3><i class="fas fa-chart-pie"></i> Quick Stats</h3>
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <span class="stat-number" id="previewReviews">0</span>
+                            <span class="stat-number" id="previewReviews" aria-label="Number of feedback received">0</span>
                             <span class="stat-label">Feedback</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" id="previewPresent">0</span>
+                            <span class="stat-number" id="previewPresent" aria-label="Number of days present">0</span>
                             <span class="stat-label">Present</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" id="previewWeekoffs">0</span>
+                            <span class="stat-number" id="previewWeekoffs" aria-label="Number of weekoffs">0</span>
                             <span class="stat-label">Weekoffs</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="about" class="content-section" style="display:none;">
-                <h2><i class="fas fa-info-circle"></i> About This Portal</h2>
+            <section id="about" class="content-section" aria-labelledby="about-heading" hidden>
+                <h2 id="about-heading"><i class="fas fa-info-circle"></i> About This Portal</h2>
                 <div class="card">
                     <p>This personal project documents customer service interactions and collects voluntary feedback.</p>
-                    <div class="highlight-card">
+                    <div class="highlight-card" role manifesta="alert">
                         <i class="fas fa-exclamation-triangle"></i>
                         <p>Note: This is not an official service channel</p>
                     </div>
@@ -112,22 +124,22 @@
                 </div>
             </section>
 
-            <section id="reviews" class="content-section" style="display:none;">
-                <h2><i class="fas fa-comment-alt"></i> Service Feedback</h2>
+            <section id="reviews" class="content-section" aria-labelledby="reviews-heading" hidden>
+                <h2 id="reviews-heading"><i class="fas fa-comment-alt"></i> Service Feedback</h2>
                 <div class="card">
-                    <form id="reviewForm">
+                    <form id="reviewForm" novalidate>
                         <div class="form-group">
                             <label for="passengerName"><i class="fas fa-user"></i> Name (Optional):</label>
-                            <input type="text" id="passengerName" placeholder="First name only">
-                            <span class="hint"><i class="fas fa-info-circle"></i> First name only recommended</span>
+                            <input type="text" id="passengerName" placeholder="First name only" aria-describedby="name-hint">
+                            <span id="name-hint" class="hint"><i class="fas fa-info-circle"></i> First name only recommended</span>
                         </div>
                         
                         <div class="form-group">
-                            <label><i class="fas fa-concierge-bell"></i> Service Type*:</label>
-                            <select id="service" required>
+                            <label for="service"><i class="fas fa-concierge-bell"></i> Service Type*:</label>
+                            <select id="service" required aria-required="true">
                                 <option value="">Select Service</option>
                                 <option value="boarding">Boarding Assistance</option>
-                                <option value="l4">Luggage Help (L4)</option>
+                                <option value="luggage">Luggage Help</option>
                                 <option value="checkin">Check-In Support</option>
                                 <option value="special">Special Assistance</option>
                                 <option value="information">Information Desk</option>
@@ -136,34 +148,36 @@
                         </div>
                         
                         <div class="form-group">
-                            <label><i class="fas fa-star"></i> Rating (Optional):</label>
-                            <div class="rating-container">
-                                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-                                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                            </div>
+                            <fieldset>
+                                <legend><i class="fas fa-star"></i> Rating (Optional):</legend>
+                                <div class="rating-container">
+                                    <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                                </div>
+                            </fieldset>
                         </div>
                         
                         <div class="form-group">
                             <label for="feedback"><i class="fas fa-comment-dots"></i> Feedback*:</label>
-                            <textarea id="feedback" rows="4" required placeholder="Please share your experience..."></textarea>
+                            <textarea id="feedback" rows="4" required aria-required="true" placeholder="Please share your experience..."></textarea>
                         </div>
                         
-                        <div class="optional-fields">
-                            <h4><i class="fas fa-ellipsis-h"></i> Optional Information</h4>
+                        <details class="optional-fields">
+                            <summary><i class="fas fa-ellipsis-h"></i> Optional Information</summary>
                             <div class="form-group">
                                 <label for="pnr"><i class="fas fa-ticket-alt"></i> PNR (Optional):</label>
-                                <input type="text" id="pnr" placeholder="Booking reference">
-                                <span class="hint"><i class="fas fa-info-circle"></i> For reference only, not stored</span>
+                                <input type="text" id="pnr" placeholder="Booking reference" aria-describedby="pnr-hint">
+                                <span id="pnr-hint" class="hint"><i class="fas fa-info-circle"></i> For reference only, not stored</span>
                             </div>
                             <div class="form-group">
                                 <label for="phone"><i class="fas fa-phone"></i> Phone (Optional):</label>
-                                <input type="tel" id="phone" placeholder="Phone number">
-                                <span class="hint"><i class="fas fa-info-circle"></i> Will never be contacted</span>
+                                <input type="tel" id="phone" placeholder="Phone number" aria-describedby="phone-hint">
+                                <span id="phone-hint" class="hint"><i class="fas fa-info-circle"></i> Will never be contacted</span>
                             </div>
-                        </div>
+                        </details>
                         
                         <div class="form-actions">
                             <button type="submit" class="primary-btn">
@@ -175,7 +189,7 @@
                         </div>
                         
                         <div class="consent-checkbox">
-                            <input type="checkbox" id="consent" required>
+                            <input type="checkbox" id="consent" required aria-required="true">
                             <label for="consent">
                                 <i class="fas fa-check-circle"></i> I confirm this is voluntary feedback and understand no service is guaranteed
                             </label>
@@ -192,18 +206,18 @@
                 </div>
             </section>
 
-            <section id="attendance" class="content-section" style="display:none;">
-                <h2><i class="fas fa-calendar-check"></i> Personal Attendance Log</h2>
-                <div class="card notice-card">
+            <section id="attendance" class="content-section" aria-labelledby="attendance-heading" hidden>
+                <h2 id="attendance-heading"><i class="fas fa-calendar-check"></i> Personal Attendance Log</h2>
+                <div class="card notice-card" role="alert">
                     <i class="fas fa-exclamation-circle"></i>
                     <p>This is a personal record-keeping system only.</p>
                 </div>
                 
                 <div class="attendance-controls card">
-                    <button id="presentBtn" class="attendance-btn present">
+                    <button id="presentBtn" class="attendance-btn present" aria-label="Mark as present">
                         <i class="fas fa-check-circle"></i> Mark Present
                     </button>
-                    <button id="absentBtn" class="attendance-btn absent">
+                    <button id="absentBtn" class="attendance-btn absent" aria-label="Mark as absent">
                         <i class="fas fa-times-circle"></i> Mark Absent
                     </button>
                 </div>
@@ -217,18 +231,18 @@
                 </div>
             </section>
 
-            <section id="weekoff" class="content-section" style="display:none;">
-                <h2><i class="fas fa-calendar-times"></i> Personal Schedule Tracker</h2>
-                <div class="card notice-card">
+            <section id="weekoff" class="content-section" aria-labelledby="weekoff-heading" hidden>
+                <h2 id="weekoff-heading"><i class="fas fa-calendar-times"></i> Personal Schedule Tracker</h2>
+                <div class="card notice-card" role="alert">
                     <i class="fas fa-exclamation-circle"></i>
                     <p>For personal reference only - not connected to employer systems.</p>
                 </div>
                 
                 <div class="card">
-                    <form id="weekoffForm">
+                    <form id="weekoffForm" novalidate>
                         <div class="form-group">
-                            <label><i class="fas fa-calendar-day"></i> Day Type*:</label>
-                            <select id="weekoffType" required>
+                            <label for="weekoffType"><i class="fas fa-calendar-day"></i> Day Type*:</label>
+                            <select id="weekoffType" required aria-required="true">
                                 <option value="">Select Type</option>
                                 <option value="self">Personal Day</option>
                                 <option value="company">Scheduled Day</option>
@@ -259,8 +273,8 @@
                 </div>
             </section>
 
-            <section id="stats" class="content-section" style="display:none;">
-                <h2><i class="fas fa-chart-bar"></i> Service Statistics</h2>
+            <section id="stats" class="content-section" aria-labelledby="stats-heading" hidden>
+                <h2 id="stats-heading"><i class="fas fa-chart-bar"></i> Service Statistics</h2>
                 <div class="card">
                     <div id="statsDisplay">
                         <div class="stats-grid">
@@ -270,37 +284,33 @@
                         <div class="charts-container">
                             <div class="chart-card">
                                 <h3><i class="fas fa-star"></i> Feedback Ratings</h3>
-                                <div class="chart-placeholder" id="ratingsChart">
-                                    <!-- Chart will be rendered here -->
-                                </div>
+                                <canvas id="ratingsChart" aria-label="Feedback ratings distribution"></canvas>
                             </div>
                             
                             <div class="chart-card">
                                 <h3><i class="fas fa-calendar-alt"></i> Attendance Trend</h3>
-                                <div class="chart-placeholder" id="attendanceChart">
-                                    <!-- Chart will be rendered here -->
-                                </div>
+                                <canvas id="attendanceChart" aria-label="Attendance trend over time"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="contact" class="content-section" style="display:none;">
-                <h2><i class="fas fa-envelope"></i> Contact</h2>
+            <section id="contact" class="content-section" aria-labelledby="contact-heading" hidden>
+                <h2 id="contact-heading"><i class="fas fa-envelope"></i> Contact</h2>
                 <div class="card">
-                    <form id="contactForm" action="https://formspree.io/f/mjkyqvpy" method="POST">
+                    <form id="contactForm" action="https://formspree.io/f/mjkyqvpy" method="POST" novalidate>
                         <div class="form-group">
                             <label for="contactName"><i class="fas fa-user"></i> Name:</label>
                             <input type="text" id="contactName" name="name" placeholder="Your name">
                         </div>
                         <div class="form-group">
                             <label for="contactEmail"><i class="fas fa-envelope"></i> Email:</label>
-                            <input type="email" id="contactEmail" name="email" placeholder="Your email">
+                            <input type="email" id="contactEmail" name="email" placeholder="Your email" required aria-required="true">
                         </div>
                         <div class="form-group">
                             <label for="contactMessage"><i class="fas fa-comment"></i> Message:</label>
-                            <textarea id="contactMessage" name="message" rows="4" placeholder="Your message..."></textarea>
+                            <textarea id="contactMessage" name="message" rows="4" placeholder="Your message..." required aria-required="true"></textarea>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="primary-btn">
@@ -312,77 +322,77 @@
                 
                 <div class="card">
                     <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
-                    <div class="faq-item">
-                        <h4>How can I delete my feedback?</h4>
+                    <details class="faq-item">
+                        <summary>How can I delete my feedback?</summary>
                         <p>Contact through this form with details of your submission and we'll remove it within 48 hours.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Can I get a receipt for my tip?</h4>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I get a receipt for my tip?</summary>
                         <p>Yes, Razorpay provides payment receipts automatically. Contact us if you need additional documentation.</p>
-                    </div>
+                    </details>
                 </div>
             </section>
 
-            <section id="terms" class="content-section" style="display:none;">
-                <h2><i class="fas fa-file-contract"></i> Terms of Service</h2>
+            <section id="terms" class="content-section" aria-labelledby="terms-heading" hidden>
+                <h2 id="terms-heading"><i class="fas fa-file-contract"></i> Terms of Service</h2>
                 <div class="card legal-text">
                     <h3><i class="fas fa-gavel"></i> 1. General Conditions</h3>
-                    <p>This is a personal project website. By using this site, you agree:</p>
+                    <p>By using this site, you agree:</p>
                     <ul>
-                        <li><i class="fas fa-check"></i> All interactions are voluntary</li>
-                        <li><i class="fas fa-check"></i> No service guarantees are implied</li>
-                        <li><i class="fas fa-check"></i> The operator is not liable for any decisions made based on this data</li>
+                        <li>All interactions are voluntary</li>
+                        <li>No service guarantees are implied</li>
+                        <li>The operator is not liable for any decisions made based on this data</li>
                     </ul>
                     
                     <h3><i class="fas fa-money-bill-wave"></i> 2. Financial Terms</h3>
                     <ul>
-                        <li><i class="fas fa-check"></i> Tips are non-refundable voluntary gratitude payments</li>
-                        <li><i class="fas fa-check"></i> Minimum tip amount is ₹15</li>
-                        <li><i class="fas fa-check"></i> No recurring payments are enabled</li>
-                        <li><i class="fas fa-check"></i> All transactions are processed through secure Razorpay gateway</li>
+                        <li>Tips are non-refundable voluntary gratitude payments</li>
+                        <li>Minimum tip amount is ₹15</li>
+                        <li>No recurring payments are enabled</li>
+                        <li>All transactions are processed through secure Razorpay gateway</li>
                     </ul>
                     
                     <h3><i class="fas fa-ban"></i> 3. Termination Clause</h3>
                     <p>The site operator may terminate access to any user at any time without notice.</p>
                     
-                    <div class="highlight-card">
+                    <div class="highlight-card" role="alert">
                         <i class="fas fa-exclamation-triangle"></i>
                         <p>Last updated: April 2025. These terms may change without notice.</p>
                     </div>
                 </div>
             </section>
 
-            <section id="privacy" class="content-section" style="display:none;">
-                <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+            <section id="privacy" class="content-section" aria-labelledby="privacy-heading" hidden>
+                <h2 id="privacy-heading"><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
                 <div class="card legal-text">
                     <h3><i class="fas fa-database"></i> 1. Data Collection</h3>
                     <p>We collect only:</p>
                     <ul>
-                        <li><i class="fas fa-check"></i> Service feedback (text)</li>
-                        <li><i class="fas fa-check"></i> Optional first names</li>
-                        <li><i class="fas fa-check"></i> Service type and date information</li>
-                        <li><i class="fas fa-times"></i> No sensitive PNR/phone data is stored permanently</li>
+                        <li>Service feedback (text)</li>
+                        <li>Optional first names</li>
+                        <li>Service type and date information</li>
+                        <li>No sensitive PNR/phone data is stored permanently</li>
                     </ul>
                     
                     <h3><i class="fas fa-chart-line"></i> 2. Data Usage</h3>
                     <ul>
-                        <li><i class="fas fa-check"></i> Data is used solely for personal service improvement</li>
-                        <li><i class="fas fa-times"></i> Never sold to third parties</li>
-                        <li><i class="fas fa-times"></i> Never shared with employers</li>
-                        <li><i class="fas fa-check"></i> Aggregated statistics may be displayed publicly</li>
+                        <li>Data is used solely for personal service improvement</li>
+                        <li>Never sold to third parties</li>
+                        <li>Never shared with employers</li>
+                        <li>Aggregated statistics may be displayed publicly</li>
                     </ul>
                     
                     <h3><i class="fas fa-archive"></i> 3. Data Retention</h3>
                     <ul>
-                        <li><i class="fas fa-check"></i> Anonymous feedback is kept indefinitely</li>
-                        <li><i class="fas fa-check"></i> Optional personal data is deleted after 30 days</li>
-                        <li><i class="fas fa-check"></i> Financial records (tips) are kept for tax purposes only</li>
+                        <li>Anonymous feedback is kept indefinitely</li>
+                        <li>Optional personal data is deleted after 30 days</li>
+                        <li>Financial records (tips) are kept for tax purposes only</li>
                     </ul>
                     
                     <h3><i class="fas fa-user-cog"></i> 4. User Rights</h3>
                     <p>You may request deletion of your data by contacting support through the contact form.</p>
                     
-                    <div class="highlight-card">
+                    <div class="highlight-card" role="alert">
                         <i class="fas fa-lock"></i>
                         <p>All data is encrypted in transit and at rest. We follow industry-standard security practices.</p>
                     </div>
@@ -390,7 +400,7 @@
             </section>
         </main>
 
-        <footer>
+        <footer aria-label="Site footer">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4><i class="fas fa-info-circle"></i> About</h4>
@@ -410,19 +420,17 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 dakshhande.site - Personal Project | Not affiliated with any employer</p>
-                <p>v3.0 | Last Updated: April 2025</p>
+                <p>© 2025 dakshhande.site - Personal Project | Not affiliated with any employer</p>
+                <p>v3.1 | Last Updated: April 2025</p>
             </div>
         </footer>
     </div>
 
     <!-- Toast notification container -->
-    <div id="toastContainer"></div>
+    <div id="toastContainer" aria-live="polite"></div>
 
-    <!-- Chart.js for statistics -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Razorpay is loaded dynamically in script.js -->
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
-    </html>
+</html>
